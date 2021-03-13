@@ -322,12 +322,94 @@ async def wiki(ctx, *, search:str):
         await ctx.send(f"Sembra che questa pagina abbia troppe informazioni per essere inserita in un embed.\nLascio qui il link per raggiungere la pagina:\n{ws.url}")
 #===============================================================================
 
+#VOICE==========================================================================
+@client.command(help="Sposta o connette il bot al tuo canale vocale", aliases=["joinme"])
+async def join(ctx):
+        global voice
+        try:
+            channel = ctx.author.voice.channel
+        except:
+            return await ctx.send("Prima devi connetterti ad un canale vocale!")
+        voice = get(client.voice_clients, guild=ctx.guild)
+        if voice and voice.is_connected():
+            await voice.move_to(channel)
+        else:
+            voice = await channel.connect()
+
+@client.command(help="Disconnette il bot da un canale vocale")
+async def leave(ctx):
+    voice = discord.utils.get(client.voice_clients, guild=ctx.guild)
+    if voice.is_connected():
+        await voice.disconnect()
+    else:
+        await ctx.send("Non sono connesso ad un canale vocale!")
+
+@client.command(help="Riproduce l'audio di un video di Youtube")
+async def play(ctx, *url:str):
+    if url:
+        song_there = os.path.isfile("song.mp3")
+        try:
+            if song_there:
+                os.remove("song.mp3")
+        except PermissionError:
+            await ctx.send("Aspetta che il brano in riproduzione finisca o usa il comando $stop.")
+            return
+        voice = discord.utils.get(client.voice_clients, guild=ctx.guild)
+        if not voice.is_connected():
+            voiceChannel = discord.utils.get(ctx.guild.voice_channels, name='Generale')
+            await voiceChannel.connect()
+        ydl_opts = {
+            'format': 'bestaudio/best',
+            'quiet': True,
+            'outtmpl': "./song.mp3",
+            'postprocessors': [{
+                'key': 'FFmpegExtractAudio',
+                'preferredcodec': 'mp3',
+                'preferredquality': '192',
+            }],
+        }
+        song_search = " ".join(url)
+        with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+            ydl.download([f"ytsearch1:{song_search}"])
+        voice.play(discord.FFmpegPCMAudio("song.mp3"))
+    else:
+        await ctx.send("Assicurati di aver inserito il nome della canzone o un url di youtube!")
+
+@client.command(help="Mette in pausa l'audio in riproduzione")
+async def pause(ctx):
+    voice = discord.utils.get(client.voice_clients, guild=ctx.guild)
+    if voice.is_playing():
+        voice.pause()
+    elif not voice.is_connected():
+        await ctx.send("Non sono in un canale vocale al momento!")
+    else:
+        await ctx.send("Non sto riproducendo audio al momento!")
+
+@client.command(help="Riprende la riproduzione di un audio precedentemente messo in pausa")
+async def resume(ctx):
+    voice = discord.utils.get(client.voice_clients, guild=ctx.guild)
+    if voice.is_paused():
+        voice.resume()
+    elif not voice.is_connected():
+        await ctx.send("Non sono in un canale vocale al momento!")
+    else:
+        await ctx.send("L'audio non è in pausa!")
+
+@client.command(help="Ferma la riproduzione di un brano, eliminandolo dalla coda di riproduzione")
+async def stop(ctx):
+    voice = discord.utils.get(client.voice_clients, guild=ctx.guild)
+    if voice.is_connected():
+        voice.stop()
+    else:
+        await ctx.send("Non sono in un canale vocale al momento!")
+#===============================================================================
+
 @client.command(help="Disconnette il bot da Discord")
 async def logout(ctx):
     if str(ctx.author) == "Zoldie#4848":
         qexit = input("Disconnect from Discord? y/n")
         if qexit == "y":
-            await ctx.send("Vi saluto feudatari, io vado!")
+            await ctx.send("Vi saluto feudatari, addio!")
             await client.logout()
             print(f'{client.user} has logout from Discord!')
         elif qexit == "n":
