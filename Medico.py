@@ -165,7 +165,7 @@ async def flip(ctx):
     await ctx.send(random.choice(testacroce))
 
 @client.command(help="Lancia un dado", aliases=["dice"])
-async def dado(self, ctx, max=6):
+async def dado(ctx, max=6):
     n = random.randrange(1, max)
     await ctx.send(str(n))
 #===============================================================================
