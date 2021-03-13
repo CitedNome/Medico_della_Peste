@@ -16,8 +16,6 @@ client = commands.Bot(command_prefix="§")
 
 versione = "0.3.2"
 
-os.chdir("/mnt/DATI/Documenti/Carlo/Python/Medico_della_Peste")
-
 ciao_words = ["ciao", "buongiorno", "hello", "salve"]
 bad_words = ["cazzo", "merda", "figa", "vaffanculo", "coglione", "puttana", "troia"]
 
