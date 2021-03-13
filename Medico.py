@@ -232,7 +232,7 @@ async def prestigio(ctx, target:discord.Member=None):
 
 @client.command(help="Mostra la classifica dei membri con più prestigio", aliases=["leaderboard"])
 async def classifica(ctx, x=3):
-    users = await get_cromo_data()
+    users = await get_money_data()
     leader_board = {}
     total = []
     for user in users:
