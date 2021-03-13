@@ -14,7 +14,7 @@ from discord.voice_client import VoiceClient
 
 client = commands.Bot(command_prefix="§")
 
-versione = "0.3.2"
+versione = "1.0.2"
 
 ciao_words = ["ciao", "buongiorno", "hello", "salve"]
 bad_words = ["cazzo", "merda", "figa", "vaffanculo", "coglione", "puttana", "troia"]
