@@ -130,7 +130,7 @@ async def avatar(ctx, *, user:discord.Member=None):
 async def slowmode(ctx, sec: int):
     if str(ctx.author) == "Zoldie#4848" or str(ctx.author) == "Collium#0412":
         await ctx.channel.edit(slowmode_delay=sec)
-        await ctx.send(f"Impostata la slowmode del canale {ctx.channel.name} a {seconds} secondi!")
+        await ctx.send(f"Impostata la slowmode del canale {ctx.channel.name} a {sec} secondi!")
     else:
         await ctx.send("Non hai il permesso di utilizzare questo comando!")
 #===============================================================================
