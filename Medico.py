@@ -114,7 +114,7 @@ async def online(ctx):
         await ctx.send("Solo l'host può usare questo comando!")
 #===============================================================================
 
-#ALTRO==========================================================================
+#ADMIN==========================================================================
 @client.command(help="Controlla la latenza del bot")
 async def ping(ctx):
     await ctx.send(f"Pong! {round(client.latency * 1000)}ms")
@@ -124,6 +124,12 @@ async def ping(ctx):
 async def avatar(ctx, *, user:discord.Member=None):
     user = user or ctx.author
     await ctx.send(f"Avatar di **{user.name}**\n{user.avatar_url_as(size=1024)}")
+        
+@client.command(help="Gestisci la slowmode del canale testuale in cui ti trovi")
+@commands.guild_only()
+async def slowmode(ctx, sec: int):
+    await ctx.channel.edit(slowmode_delay=sec)
+    await ctx.send(f"Impostata la slowmode del canale {ctx.channel.name} a {seconds} secondi!")
 #===============================================================================
 
 
