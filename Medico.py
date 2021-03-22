@@ -14,7 +14,7 @@ from discord.voice_client import VoiceClient
 
 client = commands.Bot(command_prefix="§")
 
-versione = "1.0.2"
+versione = "1.0.3"
 
 ciao_words = ["ciao", "buongiorno", "hello", "salve"]
 bad_words = ["cazzo", "merda", "figa", "vaffanculo", "coglione", "puttana", "troia"]
@@ -49,7 +49,7 @@ async def on_disconnect():
 @client.event
 async def on_ready():
     print("Medico della Peste è Online!")
-    await client.change_presence(activity=discord.Game(f"Versione {versione} - by Zoldie#4848"))
+    await client.change_presence(activity=discord.Game(f"by Zoldie#4848 - Versione {versione}"))
 #===============================================================================
 
 #MESSAGE========================================================================
