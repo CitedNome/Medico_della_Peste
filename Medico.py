@@ -88,7 +88,6 @@ async def serverinfo(ctx):
 
 @client.command(help="Invia le informazioni sul bot", aliases=["presenta", "introduce","presentati"])
 async def info(ctx):
-    await ctx.message.delete()
     embed = discord.Embed(title=f"Medico della Peste", description="Bot Discord\nCoded by Zoldie#4848", color=discord.Color.dark_green())
     embed.set_author(name="Medico della peste", icon_url="https://cdn.discordapp.com/app-icons/817397996454150144/934735c613c69ba324f5877ed990a901.png?size=256")
     embed.add_field(name="Comandi", value="Scrivi in chat §help per ricevere una lista di tutti i comandi disponibili.", inline=False)
