@@ -89,8 +89,8 @@ async def serverinfo(ctx):
 @client.command(help="Invia le informazioni sul bot", aliases=["presenta", "introduce","presentati"])
 async def info(ctx):
     await ctx.message.delete()
-    embed.set_author(name="Medico della peste", icon_url="https://cdn.discordapp.com/app-icons/817397996454150144/934735c613c69ba324f5877ed990a901.png?size=256")
     embed = discord.Embed(title=f"Medico della Peste", description="Bot Discord\nCoded by Zoldie#4848", color=discord.Color.dark_green())
+    embed.set_author(name="Medico della peste", icon_url="https://cdn.discordapp.com/app-icons/817397996454150144/934735c613c69ba324f5877ed990a901.png?size=256")
     embed.add_field(name="Comandi", value="Scrivi in chat §help per ricevere una lista di tutti i comandi disponibili.", inline=False)
     embed.add_field(name="Prestigio", value="Il Medico della Peste ha un sistema di prestigio/onore integrato, che ha un funzionamento simile all'XP.\nPuoi donare prestigio agli altri utenti con il comando \"§onora @nome_dell'utente\".\nQuesto sistema è ancora un **WIP**", inline=False)
     await ctx.send(embed=embed)
@@ -137,8 +137,8 @@ async def slowmode(ctx, sec: int):
 
 
 #FUN============================================================================
-@client.command(help="Invia un soldato casuale di Goodgame Empire", aliases=["soldato", "soldati", "guerriero", "guerrieri"])
-async def soldier(ctx):
+@client.command(help="Invia un soldato casuale di Goodgame Empire", aliases=["soldier", "soldati", "guerriero", "guerrieri"])
+async def soldato(ctx):
     chosen_img=random.choice(sold)
     embed=discord.Embed(
     color=discord.Color.dark_green()
@@ -264,8 +264,8 @@ async def classifica(ctx, x=3):
 #===============================================================================
 
 #RICERCHE=======================================================================
-@client.command(help="Cerca un video su YouTube", aliases=["youtube", "yt"])
-async def youtube_search(ctx, *, search):
+@client.command(help="Cerca un video su YouTube", aliases=["youtube_search", "yt"])
+async def youtube(ctx, *, search):
     results = ytbs.YoutubeSearch(search, max_results=3).to_dict()
     try:
         tit1 = results[0]["title"]
