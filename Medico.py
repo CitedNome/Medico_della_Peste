@@ -12,7 +12,7 @@ from discord.ext import commands, tasks
 from discord.utils import get
 from discord.voice_client import VoiceClient
 
-client = commands.Bot(command_prefix="§")
+client = commands.Bot(command_prefix="//")
 
 versione = "1.1.3"
 
@@ -90,7 +90,7 @@ async def serverinfo(ctx):
 async def info(ctx):
     embed = discord.Embed(title=f"Medico della Peste", description="Bot Discord\nCoded by Zoldie#4848", color=discord.Color.dark_green())
     embed.set_author(name="Medico della peste", icon_url="https://cdn.discordapp.com/app-icons/817397996454150144/934735c613c69ba324f5877ed990a901.png?size=256")
-    embed.add_field(name="Comandi", value="Scrivi in chat §help per ricevere una lista di tutti i comandi disponibili.", inline=False)
+    embed.add_field(name="Comandi", value="Scrivi in chat //help per ricevere una lista di tutti i comandi disponibili.", inline=False)
     embed.add_field(name="Prestigio", value="Il Medico della Peste ha un sistema di prestigio/onore integrato, che ha un funzionamento simile all'XP.\nPuoi donare prestigio agli altri utenti con il comando \"§onora @nome_dell'utente\".\nQuesto sistema è ancora un **WIP**", inline=False)
     await ctx.send(embed=embed)
 #===============================================================================
