@@ -429,5 +429,3 @@ async def logout(ctx):
         await ctx.send("Solo l'host può disconnettermi da Discord")
 
 client.run('')
-#@client.command
-#async def play(ctx, url:str):
