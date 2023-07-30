@@ -428,4 +428,4 @@ async def logout(ctx):
     else:
         await ctx.send("Solo l'host può disconnettermi da Discord")
 
-client.run('')
+client.run(TOKEN)
